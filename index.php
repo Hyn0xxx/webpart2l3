@@ -3,9 +3,9 @@
 header('Content-Type: text/html; charset=UTF-8');
 
 // Параметры подключения к БД - замените на свои!
-$db_user = 'u82464';  // Ваш логин
-$db_pass = '8104996';  // Ваш пароль
-$db_name = 'u82464';  // Имя БД (обычно совпадает с логином)
+$db_user = 'u82464';      // Ваш логин
+$db_pass = '8104996';     // Ваш пароль
+$db_name = 'u82464';      // Имя БД - ВАШ ЛОГИН!
 $db_host = 'localhost';
 
 try {
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // 1. ФИО: только буквы, пробелы, дефисы, не длиннее 150 символов
     if (empty($formData['full_name'])) {
         $errors['full_name'] = 'Поле "ФИО" обязательно для заполнения.';
-    } elseif (mb_strlen($formData['full_name']) > 150) {
+    } elseif (strlen($formData['full_name']) > 150) {
         $errors['full_name'] = 'ФИО не должно превышать 150 символов.';
     } elseif (!preg_match('/^[a-zA-Zа-яА-ЯёЁ\s\-]+$/u', $formData['full_name'])) {
         $errors['full_name'] = 'ФИО может содержать только буквы, пробелы и дефисы.';
@@ -156,8 +156,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
     
-    // 7. Биография: не длиннее 5000 символов, допустимы обычные символы
-    if (mb_strlen($formData['bio']) > 5000) {
+    // 7. Биография: не длиннее 5000 символов
+    if (strlen($formData['bio']) > 5000) {
         $errors['bio'] = 'Биография не должна превышать 5000 символов.';
     }
     
@@ -265,7 +265,7 @@ function getGenderText($gender) {
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #e8ecf2;
             min-height: 100vh;
             padding: 20px;
         }
@@ -275,12 +275,12 @@ function getGenderText($gender) {
             margin: 0 auto;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #5a6e7c;
             color: white;
             padding: 30px;
             text-align: center;
@@ -292,7 +292,7 @@ function getGenderText($gender) {
         }
         
         .header p {
-            opacity: 0.9;
+            opacity: 0.85;
             font-size: 14px;
         }
         
@@ -330,14 +330,16 @@ function getGenderText($gender) {
             font-size: 14px;
             transition: all 0.3s ease;
             font-family: inherit;
+            background: #fafafa;
         }
         
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #5a6e7c;
+            box-shadow: 0 0 0 3px rgba(90, 110, 124, 0.1);
+            background: white;
         }
         
         .radio-group {
@@ -369,14 +371,14 @@ function getGenderText($gender) {
             align-items: center;
             font-weight: normal;
             cursor: pointer;
-            background: #f8f9fa;
+            background: #f0f2f5;
             padding: 8px 15px;
             border-radius: 20px;
             transition: all 0.3s ease;
         }
         
         .checkbox-group label:hover {
-            background: #e9ecef;
+            background: #e0e4e8;
         }
         
         .checkbox-group input[type="checkbox"] {
@@ -395,7 +397,7 @@ function getGenderText($gender) {
         }
         
         select[multiple] option:checked {
-            background: #667eea linear-gradient(0deg, #667eea 0%, #667eea 100%);
+            background: #5a6e7c linear-gradient(0deg, #5a6e7c 0%, #5a6e7c 100%);
             color: white;
         }
         
@@ -411,21 +413,21 @@ function getGenderText($gender) {
         }
         
         .success-message {
-            background: #d4edda;
-            color: #155724;
+            background: #e8f5e9;
+            color: #2e7d32;
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 25px;
-            border-left: 4px solid #28a745;
+            border-left: 4px solid #4caf50;
         }
         
         .error-summary {
-            background: #f8d7da;
-            color: #721c24;
+            background: #ffebee;
+            color: #c62828;
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 25px;
-            border-left: 4px solid #e74c3c;
+            border-left: 4px solid #f44336;
         }
         
         .error-summary ul {
@@ -434,7 +436,7 @@ function getGenderText($gender) {
         }
         
         .btn-submit {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #5a6e7c;
             color: white;
             border: none;
             padding: 14px 30px;
@@ -443,11 +445,12 @@ function getGenderText($gender) {
             border-radius: 10px;
             cursor: pointer;
             width: 100%;
-            transition: transform 0.2s ease;
+            transition: all 0.2s ease;
         }
         
         .btn-submit:hover {
-            transform: translateY(-2px);
+            background: #4a5c68;
+            transform: translateY(-1px);
         }
         
         .btn-submit:active {
